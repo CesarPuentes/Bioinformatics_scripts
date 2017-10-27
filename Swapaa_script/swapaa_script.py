@@ -1,7 +1,4 @@
 import os
-import Midas
-import chimera
-from chimera import runCommand
 from chimera import runCommand as run, openModels
 from Midas import write
 
@@ -42,20 +39,13 @@ def file_len(fname):
 f = open("M_list", "r")
 data = f.read()
 print("Input sequences:\n",data)
-f2 = open("M_list", "r")
-data2 = f2.readline()
-print(data2)
-linelength = len(data2)
-print ("linelength: ", linelength)
-
-
 new = data.replace("\n","")
 s = list(new)
 print(s)
 print("Number of peptide lines entered:", file_len("M_list"))
 
 ##Loop variable initiation
-n = 0
+
 #Index related variable
 l = -1
 #Index related variable
@@ -87,16 +77,8 @@ with open("Complete.com", "w") as text_file:
                 text_file2.write("swapaa %s #0:%s.p \n" %(y, c))
                 text_file.write("swapaa %s #0:%s.p \n" %(y, c))
 
-                    
 
-
-
-             
-
-
-
-
-
+f.close()
 text_file.close()
 text_file2.close()
 

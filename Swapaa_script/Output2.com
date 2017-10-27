@@ -1,9 +1,1 @@
-swapaa lys  #0:10.p 
-swapaa lys  #0:11.p 
-swapaa gln  #0:12.p 
-swapaa leu  #0:13.p 
-swapaa leu  #0:14.p 
-swapaa leu  #0:15.p 
-swapaa leu  #0:16.p 
-swapaa leu  #0:17.p 
-swapaa leu  #0:18.p 
+
