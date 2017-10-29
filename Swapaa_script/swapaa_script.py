@@ -1,4 +1,5 @@
 import os
+import Midas
 from chimera import runCommand as run, openModels
 from Midas import write
 
@@ -44,6 +45,7 @@ s = list(new)
 print(s)
 print("Number of peptide lines entered:", file_len("M_list"))
 
+
 ##Loop variable initiation
 
 #Index related variable
@@ -51,7 +53,7 @@ l = -1
 #Index related variable
 z = 0
 
-pdb_path = "/home/cesar/Desktop/Swapaa_script/"
+pdb_path = "/home/cesar/Desktop/Swapaa_script/Mutations/"
 
 
 with open("Complete.com", "w") as text_file:
@@ -64,7 +66,7 @@ with open("Complete.com", "w") as text_file:
         e = (z * 9)
         print("E value: ", e)
         Midas.open("Output2.com")
-        run('write relative #0 #0 %s mutation_%s.pdb' %(pdb_path, x))
+        run('write relative #0 #0 %smutation_%s.pdb' %(pdb_path, x))
         with open("Output2.com", "w") as text_file2:
             for j in range (9):
                 c = c+1
