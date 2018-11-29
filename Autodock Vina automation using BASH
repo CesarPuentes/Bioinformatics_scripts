@@ -1,0 +1,9 @@
+for(( i = 0; i <= 100; i++ )); do #Add number of iterations, in this expample the Autodock will run during 100 iterations
+for f in L*.pdbqt; do # Where * takes the number of each ligand file (L).    
+b = basename*$f-repeat$i # Output file names   
+echo Processing ligand$b # echo for visualization    
+vina --config conf.txt --ligand $f --out out$b.pdbqt --log log$b.txt #You can use Vina (or qvina). “ligand” captures the value of the b variable. El archivo del receptor se lee en la onfiguración 'config conf.txt.    
+done    
+done   
+ 
+#This script is a modification of: http://vina.scripps.edu/manual.html#screening
