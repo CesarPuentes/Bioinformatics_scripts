@@ -1,0 +1,13 @@
+#Script for extracting text within the denominated markers. In this case the extracted information was between 'MODEL' and 'ENDMDL'
+for f in mbp-1bx2_*-MM.pdb; do
+b=`basename $f`
+echo $b
+for(( i = 1; i <= 6; i++ )); do
+var=$((var+1))
+echo $var
+sed -n "/MODEL     $i/,/ENDMDL/p" $b > out$b'_repeat_'$i'.pdb' #extract info between 'MODEL' and 'ENDMDL' and put it on separate 'out' files.
+#sed -n '/MODEL     1/,/ENDMDL/p' mbp-1bx2_84-MM.pdb > out
+done
+done
+
+
