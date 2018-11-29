@@ -1,2 +1,2 @@
 # Bioinformatics_scripts
-A few humble scripts for bioinformatics
+A few simple scripts for bioinformatics
