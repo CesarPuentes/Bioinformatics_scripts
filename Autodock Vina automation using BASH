@@ -7,3 +7,33 @@ done
 done   
  
 #This script is a modification of: http://vina.scripps.edu/manual.html#screening
+
+
+#################  
+#If you wish to concatenate the results of various subfolders, you can use this sub-script separately.
+#################  
+#! /bin/bash  
+  
+for(( i = 0; i <= 12; i++ )); do  #Here you can change the number of iterations depending on the number of sub-folders
+var=$((var+1)) #Create a variable, depending on the number you assign to you Ligand files.  
+cat ./{PC1,PC2,PC3,PC4}/log*ligand_$var.pdbqt-repeat*.txt > outligand$var #Concatenate all log*ligand_$var.pdbqt-repeat*.txt in the subfolders into a single file representing each machine.
+done  
+  
+for(( x = 0; x <= 12; x++ )); do  
+dar=$((dar+1)) #Create another variable  
+for f in outligand$dar; do # $dar variable will 'pick up' each of the 'outligand$var' files generated in the previous step
+    c=`basename *$f` #C captures the output that goes trough f 
+    echo Processing $c  
+    #cat $c >> bind1.txt;   
+    awk '($1+0)>0 && ($1+0)<10' $c > mid #Extract lines with numbers
+    sed -i -e 's/     /,/g' mid #Replaces whitespaces with commas
+    cut -c9-13 mid > mid2  #Cut columns from 9 to 13 and send them to a new file
+    paste -d, -s mid2 > binde$dar  #Transfer the files from a vertical to a horizontal line
+    done  
+    #rm -f bind1.txt  
+    rm -f mid  # Remove excess files
+    rm -f mid2  #Reove excess files
+done  
+
+cat binde* > totalbinde   #Make a file with all data
+fgrep -o - totalbinde | wc -l > modelnumbers  #Count the number of generated docking models
