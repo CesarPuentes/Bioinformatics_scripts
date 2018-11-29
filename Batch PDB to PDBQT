@@ -1,0 +1,11 @@
+# To create BATCH PDB to PDBQT conversions of semi-rigid ligands: 
+find -name '*.pdb' | xargs -r -n 1 python /usr/local/MGLTools-1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -B -v -l
+# To create BACH PDB to PDBQT conversions of a receptor.
+find -name '*.pdb' | xargs -r -n 1 python /usr/local/MGLTools-1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py -v -r
+
+#The path depends on where you installed AutoDockTools
+
+#Source: https://wiki.debian.org/BOINC/Server/Projects/AutoDock
+#For more information on how to configure these lines see:
+#http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-receptor-file-for-autodock4
+#http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-ligand-file-for-autodock4
