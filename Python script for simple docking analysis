@@ -1,0 +1,42 @@
+import sys
+import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
+
+
+i = 84 ##The files started from the number 85.
+sys.stdout = open('Results.txt', 'w')
+
+print("Resdiue,    Mean,             Median,       Mode,       Max,       Min\n") ##Here the table titles are printed
+
+for x in range (15):
+    ##Here the central tendency values are calculated from the docking data.
+	load = "binde{0}".format(i)
+	dataset = np.loadtxt(load, dtype=float, delimiter=',')
+	#mean value
+	mean = np.mean(dataset)
+	#median value
+	median = np.median(dataset)
+	#mode value
+	mode = stats.mode(dataset)[0][0]
+	#Max value
+	maxim = np.amax(dataset) 
+	#Min value
+	minim = np.amin(dataset) 
+	nameR = "A{0}".format(i)
+	
+	f = open("Results.txt", "w+") ##File with results is created.
+
+	print("%s,        %s,     %s,      %s,      %s,      %s" %(nameR, mean, median, mode, maxim, minim))
+
+	f.write("%s,        %s,                   %s,      %s,      %s,      %s" %(nameR, mean, median, mode, maxim, minim))
+	f.close()
+	
+	## The data is plotted in a histogram. This part is not really necessary,
+	b = plt.hist(dataset, bins = [-13,-12,-11,-10,-9,-8,-7,-6],bottom=20, color='c') 
+	plt.title("histogram") 
+	plt.savefig("Histogram{0}.png".format(i))
+	i = i + 1
+	
+
+
