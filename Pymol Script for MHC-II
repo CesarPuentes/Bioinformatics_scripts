@@ -1,0 +1,52 @@
+##Simple idea to display an MHC-II molecule in PyMol. The molecules used where first analyzed in the arpeggio web-server.
+set_color dred=  [1.00 , 0.30 , 0.28]; set_color dblue= [0.05 , 0.19 , 0.57];set_color lblue= [0.30, 0.90, 0.80]
+select active, chain A
+color dblue, active
+select active, chain B
+color dred, active
+select active, chain P
+color lblue, active
+show sticks, active
+show spheres, active
+set stick_radius, 0.1, (all)
+set sphere_scale, 0.15, (all)
+util.cbac chain P
+preset.ball_and_stick(selection='chain P', mode=2)
+extract new_A, chain A
+extract new_B, chain B
+set cartoon_transparency, 0.5, new_A
+set cartoon_transparency, 0.5, new_B
+set stick_color, gold, (resid 89 and chain P)
+color gold, active
+set stick_color, gold, (resid 54 and chain A)
+color gold, active
+set_view (\
+    -0.793499708,   -0.534682274,   -0.290634245,\
+    -0.525750816,    0.361769736,    0.769873798,\
+    -0.306495458,    0.763699174,   -0.568174362,\
+     0.000059824,    0.000012436,  -34.126476288,\
+    12.265687943,   -6.496932507,   12.040388107,\
+     5.420650959,   62.851654053,  -20.000000000 )
+
+
+######
+Surfaces transparency: set transparency, F, selection
+######
+Cartoon transparency:
+* transfer a piece of the molecule into a new object
+extract new_A, chain A
+extract new_B, chain B
+* adjust trasparency for the new object
+set cartoon_transparency, 0.5, new_A
+
+set cartoon_transparency, 0.5, new_B
+
+###### cut below here and paste into script ######
+set_view (\
+    -0.793499708,   -0.534682274,   -0.290634245,\
+    -0.525750816,    0.361769736,    0.769873798,\
+    -0.306495458,    0.763699174,   -0.568174362,\
+     0.000059824,    0.000012436,  -34.126476288,\
+    12.265687943,   -6.496932507,   12.040388107,\
+     5.420650959,   62.851654053,  -20.000000000 )
+### cut above here and paste into script ###
