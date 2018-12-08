@@ -1,0 +1,28 @@
+import re, os, subprocess, sys
+from subprocess import call
+
+M_list = open("M_list", "r")
+text1 = M_list.read().splitlines()
+L = len(text1)
+
+z = 0
+n = 0
+
+with open("output.txt", "w+") as outputfile:
+    for x in range (L):
+        n = n + 1
+        teststring = text1[z]
+        outputfile.write("%s\n"%teststring)
+        seq = open("seq", "w+")
+        print(teststring)
+        seq.write(teststring)
+        seq.close()
+        ligandname = ("ligand_%s.pdb" %n)
+        os.system("Scwrl4 -i input.pdb -o %s -s seq > ../Mutations" %ligandname) 
+        z = z + 1
+
+
+outputfile.close()
+M_list.close()
+
+#The file can be executed from BASH with: Scwrl4 -i input.pdb -o ligand.pdb -s seq
