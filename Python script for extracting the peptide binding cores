@@ -1,0 +1,32 @@
+import re, os, subprocess, sys
+from subprocess import call
+
+textgrinder = call("./grind.sh", shell=True)
+##THESE BASH SCRIPTS ARE EXPLAINED BELOW
+#grep -e "^   0" < New > grind
+#cut -c25-39 grind > 15mer ## These two extract the binding core with different sizes, either 15 aminoacids or 9 aminoacids
+#cut -c64-72 grind > 9mer ## These two extract the binding core with different sizes, either 15 aminoacids or 9 aminoacids
+fifteen = open("15mer", "r")
+text1 = fifteen.read().splitlines()
+L = len(text1)
+nine = open("9mer", "r")
+text2 = nine.read().splitlines()
+
+z = 0
+
+with open("output.txt", "w+") as outputfile:
+    for x in range (L):
+        teststring = text1[z]
+        teststring2 = text2[z]
+        a = (".{0,1}%s.{0,1}" %teststring2)
+        word = re.findall (a, teststring)
+        final = ",".join(str(x) for x in word)
+        z = z + 1
+        outputfile.write("%s\n"%final)
+
+rc = call("./out2.sh", shell=True)
+#awk 'length($0)>10' output.txt  > 11mer ## You can also use this one to extract a core, for instance with 11 aminoacids
+
+outputfile.close()
+fifteen.close()
+nine.close()
