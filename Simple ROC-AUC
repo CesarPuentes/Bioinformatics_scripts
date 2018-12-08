@@ -18,3 +18,25 @@ perf1 <- performance(pred, "sens", "spec")
 plot(perf1)
 performance(pred, "auc")
 
+
+
+#############################################################
+#Sample docking dataset with binding cut-off of 5nM. Zero (0) means true and One (1) means false.
+
+"predictions", "labels"
+-189.55, 0
+-190.52, 1
+-188.54, 1
+-185.70, 1
+-181.84, 1
+-182.17, 1
+-181.23, 1
+-174.15, 1
+-189.33, 0
+-182.37, 0
+-187.15, 0
+-186.10, 0
+-188.33, 0
+-187.25, 0
+
+###############################################################
