@@ -1,0 +1,20 @@
+## Short script in R for computing a simple ROC-AUC (x-axis: fpr, y-axis: tpr) out, using docking data.
+## Snippets of code were extracted from the ROCR manual https://cran.r-project.org/web/packages/ROCR/ROCR.pdf
+library(ROCR)
+#write.table (ROCR.simple, "C:\\Users\\Black\\Desktop\\mydata2.csv")
+setwd('C:\\Users\\Black\\Desktop')
+binder<-read.table("WorkAUC.csv", sep=",", header=T)
+head(binder)
+nrow(binder)
+pred <- prediction( binder$predictions, binder$labels)
+perf <- performance(pred,"tpr","fpr")
+plot(perf)
+## precision/recall curve (x-axis: recall, y-axis: precision)
+perf1 <- performance(pred, "prec", "rec")
+plot(perf1)
+## sensitivity/specificity curve (x-axis: specificity,
+## y-axis: sensitivity)
+perf1 <- performance(pred, "sens", "spec")
+plot(perf1)
+performance(pred, "auc")
+
